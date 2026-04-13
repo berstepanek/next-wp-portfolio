@@ -1,0 +1,45 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.134.0/containers/javascript-node
+{
+	"name": "Next Wordpress Sang Mele Company",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"customizations": {
+	  "vscode": {
+		"settings": {
+		  "terminal.integrated.defaultProfile.linux": "bash"
+		},
+		"extensions": [
+		  // synchronize-marker:vscode-extensions:begin
+		  // general
+		  "eamodio.gitlens",
+		  "vscode-icons-team.vscode-icons",
+		  "vincaslt.highlight-matching-tag",
+		  // code assist
+		  "visualstudioexptteam.vscodeintellicode",
+		  "angular.ng-template",
+		  "mikael.angular-beastcode",
+		  "formulahendry.auto-rename-tag",
+		  // code style + formatting
+		  "editorconfig.editorconfig",
+		  "esbenp.prettier-vscode",
+		  "stylelint.vscode-stylelint",
+		  "csstools.postcss",
+		  "dbaeumer.vscode-eslint",
+		  // testing
+		  "andys8.jest-snippets",
+		  // documentation
+		  "streetsidesoftware.code-spell-checker",
+		  "yzhang.markdown-all-in-one"
+		  // synchronize-marker:vscode-extensions:end
+		]
+	  }
+	},
+	"forwardPorts": [4200],
+	"postCreateCommand": ". $NVM_DIR/nvm.sh && nvm install $(node -p -e 'require(\"./package.json\").engines.node')",
+	// install node modules
+	//"postStartCommand": "sudo chown node node_modules eslint-rules && npm i --no-save --no-audit --prefer-offline --maxsockets 4",
+	"remoteUser": "node"
+  }
+  
