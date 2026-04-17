@@ -21,7 +21,7 @@ export default function Header() {
               rel="home"
             >
               <FontAwesomeIcon icon={faBullhorn} />
-              Sang Mélé Compagnie
+              medhi sefrioui
             </Link>
 
             <button
@@ -33,13 +33,8 @@ export default function Header() {
             </button>
             <ul className="hidden sm:flex items-center gap-x-4 ms-4">
               <li>
-                <Link href="/members" className="font-title  opacity-50">
-                  Membres
-                </Link>
-              </li>
-              <li>
-                <Link href="/creations" className="font-title opacity-50">
-                  Creations
+                <Link href="/projects" className="font-title  opacity-50">
+                  Projets
                 </Link>
               </li>
             </ul>
@@ -71,18 +66,8 @@ export default function Header() {
                   </Link>
                 </li>
                 <li className={"page_item page-item-21 font-title"}>
-                  <Link href="/members" onClick={toggleMenu}>
-                    Membres
-                  </Link>
-                </li>
-                <li className={"page_item page-item-37 font-title"}>
-                  <Link href="/creations" onClick={toggleMenu}>
-                    Creations
-                  </Link>
-                </li>
-                <li className={"page_item page-item-37 font-title"}>
-                  <Link href="/creations" onClick={toggleMenu}>
-                    Theatres
+                  <Link href="/projects" onClick={toggleMenu}>
+                    Projets
                   </Link>
                 </li>
               </ul>

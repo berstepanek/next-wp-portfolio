@@ -16,9 +16,8 @@ const fontTitle = Anton({
 });*/
 
 export const metadata: Metadata = {
-  title: "Sang Mele Compagnie, théâtre",
-  description:
-    "La compagnie Sang Mele propose des spectacles professionnels de théâtre. De la création originale, à la modernisation de texte classique, la compagnie soigne toujours son casting et la mise à scène de ces spectacles",
+  title: "Medhi sefrioui",
+  description: "Medhi sefrioui",
 };
 
 export default async function RootLayout({
