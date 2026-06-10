@@ -4,24 +4,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "next-view-transitions";
 
 import { useState } from "react";
-import { faBars, faBullhorn, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { VARIABLES_WEB_SITE } from "@/lib/variables";
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const variables = VARIABLES_WEB_SITE;
 
   return (
     <>
       <header className="fixed top-4 left-0 flex gap-x-8 z-30 w-full">
         <div className="container mx-auto">
           <div className="flex items-center gap-x-2">
-            <Link
-              className="flex items-center gap-x-2 font-title text-white bg-red-500 p-3"
-              href="/"
-              rel="home"
-            >
-              <FontAwesomeIcon icon={faBullhorn} />
-              medhi sefrioui
+            <Link className="font-title text-slate-700" href="/" rel="home">
+              {variables.name}
             </Link>
 
             <button

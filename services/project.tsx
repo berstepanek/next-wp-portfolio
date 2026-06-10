@@ -16,6 +16,19 @@ const ALL_PROJECTS_QUERY = `
         projectAcf{
           projectName
           projectIsonline
+          projectImage {
+            sourceUrl
+            altText
+          }
+          projectGallery{
+            id
+            sourceUrl
+            altText
+            mediaDetails {
+              width
+              height
+            }         
+          }
         }
         
       }
@@ -32,6 +45,10 @@ const PROJECT_BY_SLUG_QUERY = `
       projectAcf{
         projectIsonline
         projectTitle
+        projectImage {
+          sourceUrl
+          altText
+        }
         projectGallery{
           id
           sourceUrl
@@ -51,7 +68,7 @@ export async function getAllProjects() {
     ALL_PROJECTS_QUERY,
   );
 
-  return data.projects;
+  return data.projects.nodes;
 }
 
 export async function getProjectBySlug(slug: string) {

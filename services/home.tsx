@@ -7,6 +7,51 @@ const ALL_HOMEPAGE_QUERY = `
       id
       title
       content
+      homeAcf {
+        homeHighlight {
+          ... on Project {
+            id
+            title
+            uri
+            slug
+            projectAcf{
+              projectIsonline
+              projectTitle
+              projectImage {
+                sourceUrl
+                altText
+              }
+              projectGallery{
+                id
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }         
+              }
+            }
+          }
+          
+        }
+        homeProjects {
+          ... on Project {
+            id
+            title
+            uri
+            slug
+            projectAcf{
+              projectIsonline
+              projectTitle
+              projectImage {
+                sourceUrl
+                altText
+              }
+            }
+          }
+          
+        }
+      }
     }
   }
 `;

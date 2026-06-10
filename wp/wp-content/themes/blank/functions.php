@@ -45,6 +45,15 @@ add_action( 'wp_enqueue_scripts', 'blank_styles' );
 // Add block patterns.
 require get_template_directory() . '/inc/block-patterns.php';
 
+add_action('graphql_register_types', function () {
+    register_graphql_field('RootQuery', 'globalStylesheet', [
+        'type' => 'String',
+        'description' => 'CSS global généré par theme.json',
+        'resolve' => function () {
+            return wp_get_global_stylesheet();
+        },
+    ]);
+});
 
 add_action('init', 'create_post_type');
 function create_post_type()

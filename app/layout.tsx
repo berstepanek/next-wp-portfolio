@@ -5,6 +5,9 @@ import { ViewTransitions } from "next-view-transitions";
 import Header from "@/components/layout/header";
 
 import { Anton } from "next/font/google";
+import Footer from "@/components/layout/footer";
+import { getGlobalStylesheet } from "@/services/global-style";
+import Menu from "@/components/layout/menu";
 const fontTitle = Anton({
   subsets: ["latin"],
   weight: "400",
@@ -25,18 +28,29 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <ViewTransitions>
-      <html lang="en" className={`${fontTitle.variable}`}>
-        <body className={`bg-slate-900 text-white`}>
-          <Header />
+  const globalCss = await getGlobalStylesheet();
 
-          <main>{children}</main>
-          <footer className="p-2 text-center">
-            © {new Date().getFullYear()} – Sang Mélé Compagnie
-          </footer>
+  return (
+    <>
+      <html lang="en" className={`${fontTitle.variable}`}>
+        <head>
+          {globalCss && (
+            <style
+              href="wp-global-styles"
+              precedence="high"
+              dangerouslySetInnerHTML={{ __html: globalCss }}
+            />
+          )}
+        </head>
+        <body className={`bg-white text-slate-700`}>
+          <ViewTransitions>
+            <Header />
+            <Menu></Menu>
+            <main>{children}</main>
+            <Footer />
+          </ViewTransitions>
         </body>
       </html>
-    </ViewTransitions>
+    </>
   );
 }
