@@ -6,17 +6,18 @@ export default async function Menu() {
   const items = await getPrimaryMenu();
 
   return (
-    <nav>
+    <ul className="flex gap-x-2">
       {items.map((item: any) => (
-        <Link
-          key={item.id}
-          className="font-title text-slate-700"
-          href={item.uri}
-          rel="home"
-        >
-          {item.label}
-        </Link>
+        <li key={item.id}>
+          <Link
+            className="font-title text-slate-700"
+            href={item.uri}
+            rel="home"
+          >
+            {item.label}
+          </Link>
+        </li>
       ))}
-    </nav>
+    </ul>
   );
 }

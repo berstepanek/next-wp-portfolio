@@ -7,7 +7,6 @@ import Header from "@/components/layout/header";
 import { Anton } from "next/font/google";
 import Footer from "@/components/layout/footer";
 import { getGlobalStylesheet } from "@/services/global-style";
-import Menu from "@/components/layout/menu";
 const fontTitle = Anton({
   subsets: ["latin"],
   weight: "400",
@@ -45,7 +44,6 @@ export default async function RootLayout({
         <body className={`bg-white text-slate-700`}>
           <ViewTransitions>
             <Header />
-            <Menu></Menu>
             <main>{children}</main>
             <Footer />
           </ViewTransitions>

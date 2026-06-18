@@ -87,7 +87,7 @@ export default async function Home() {
                       )}
                     </ViewTransition>
                   )}
-                  <div className="flex items-center gape-x-2">
+                  <div className="flex items-center gap-x-2">
                     {post.title}
                     <FontAwesomeIcon icon={faArrowRight} />
                   </div>
