@@ -41,7 +41,7 @@ export default async function RootLayout({
             />
           )}
         </head>
-        <body className={`bg-white text-slate-700`}>
+        <body className={`bg-white text-secondary`}>
           <ViewTransitions>
             <Header />
             <main>{children}</main>

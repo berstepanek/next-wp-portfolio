@@ -9,10 +9,10 @@ export default function Header() {
   const variables = VARIABLES_WEB_SITE;
   return (
     <>
-      <header className="fixed top-4 left-0 flex gap-x-8 z-30 w-full">
-        <div className="container mx-auto">
-          <div className="flex items-center gap-x-2">
-            <Link className="font-title text-slate-700" href="/" rel="home">
+      <header className="fixed top-0 left-0 flex gap-x-8 z-30 w-full p-7">
+        <div className="p-7">
+          <div className="flex items-center gap-x-2 text-white">
+            <Link className="font-title text-white" href="/" rel="home">
               {variables.name}
             </Link>
             <Navigation></Navigation>

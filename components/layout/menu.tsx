@@ -9,11 +9,7 @@ export default async function Menu() {
     <ul className="flex gap-x-2">
       {items.map((item: any) => (
         <li key={item.id}>
-          <Link
-            className="font-title text-slate-700"
-            href={item.uri}
-            rel="home"
-          >
+          <Link className="font-title text-white" href={item.uri} rel="home">
             {item.label}
           </Link>
         </li>

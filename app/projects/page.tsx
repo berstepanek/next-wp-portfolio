@@ -18,7 +18,7 @@ export default async function CreationsPage() {
   return (
     <>
       <section className="relative flex justify-center items-center h-[80vh]">
-        <h1 className="font-title text-center text-5xl md:text-9xl mb-12 text-red-500 -skew-y-12">
+        <h1 className="font-title text-center text-5xl md:text-9xl mb-12">
           <span>- Projets -</span>
         </h1>
       </section>

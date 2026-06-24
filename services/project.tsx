@@ -44,7 +44,9 @@ const PROJECT_BY_SLUG_QUERY = `
       slug
       projectAcf{
         projectIsonline
+        projectName
         projectTitle
+        projectDescription
         projectImage {
           sourceUrl
           altText
