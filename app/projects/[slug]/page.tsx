@@ -37,27 +37,26 @@ export default async function CreationPage({ params }: Creations) {
 
   return (
     <>
-      <section className="bg-gray-200">
-        <div className="container mx-auto py-15">
-          <div className="relative rounded h-[90vh] overflow-hidden">
-            {post.projectAcf.projectImage && (
-              <ViewTransition name={`project-image-${post.id}`}>
-                {post.projectAcf.projectImage.sourceUrl && (
-                  <Image
-                    src={post.projectAcf.projectImage.sourceUrl}
-                    alt={post.id}
-                    width={300}
-                    height={400}
-                    loading="lazy"
-                    placeholder="empty"
-                    className={"bg-slate-700 w-full h-auto rounded"}
-                  />
-                )}
-              </ViewTransition>
+      <section className="p-5">
+        <div className="relative rounded h-[70vh] sm:h-[100vh] overflow-hidden bg-black">
+          {post.projectAcf.projectImage &&
+            post.projectAcf.projectImage.sourceUrl && (
+              <Image
+                src={post.projectAcf.projectImage.sourceUrl}
+                alt={post.id}
+                width={300}
+                height={400}
+                loading="lazy"
+                placeholder="empty"
+                className={"bg-slate-700 w-full h-full object-cover opacity-70"}
+              />
             )}
-            <div className="absolute w-[95%] h-[95%] rounded top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg flex items-end p-5 bg-gradient-to-t from-black from-0% to-transparent to-50% opacity-50">
+          <div className="absolute bottom-7 w-full bottom-0 left-0">
+            <div className="container mx-auto px-7">
               <div className="w-full text-white">
-                <h1 className="font-title text-9xl mb-7">{post.title}</h1>
+                <h1 className="font-title text-5xl sm:text-9xl mb-7">
+                  {post.title}
+                </h1>
               </div>
             </div>
           </div>
@@ -65,14 +64,14 @@ export default async function CreationPage({ params }: Creations) {
       </section>
 
       <section className="bg-white">
-        <div className="container mx-auto py-15">
-          <div className="flex justify-center gap-5 w-3/4 ">
-            <div className="w-3/4 text-right">
+        <div className="container mx-auto py-15 px-5">
+          <div className="flex flex-col sm:flex-row justify-center gap-5 w-full sm:w-3/4 ">
+            <div className="w-full sm:w-3/4 text-left sm:text-right">
               <h2 className="text-5xl font-title mb-3">
                 {post.projectAcf.projectTitle}
               </h2>
             </div>
-            <div className="w-1/4">
+            <div className="w-full sm:w-1/4">
               <p className="text-lg">{post.projectAcf.projectDescription}</p>
             </div>
           </div>
@@ -81,10 +80,10 @@ export default async function CreationPage({ params }: Creations) {
 
       <section className="py-24 relative">
         <div className="flex justify-center">
-          <div className="w-full max-w-screen-md text-center">
-            {post.projectAcf.projectImage && (
-              <ViewTransition name={`project-image-${post.id}`}>
-                {post.projectAcf.projectImage.sourceUrl && (
+          <div className="w-full max-w-screen-md text-center px-5">
+            <div className="flex flex-col gap-y-4">
+              {post.projectAcf.projectImage &&
+                post.projectAcf.projectImage.sourceUrl && (
                   <Image
                     src={post.projectAcf.projectImage.sourceUrl}
                     alt={post.id}
@@ -95,15 +94,7 @@ export default async function CreationPage({ params }: Creations) {
                     className={"bg-slate-700 w-full h-auto rounded"}
                   />
                 )}
-              </ViewTransition>
-            )}
-          </div>
-        </div>
-      </section>
-      <section className="py-24 relative -mt-44">
-        <div className="flex justify-center">
-          <div className="w-full max-w-screen-md text-center">
-            <div className="flex flex-col  gap-y-4">
+
               {post.projectAcf.projectGallery.map(
                 (image: any, index: number) => (
                   <div key={index}>

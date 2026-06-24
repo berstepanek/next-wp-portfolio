@@ -14,9 +14,9 @@ export default async function Home() {
     <>
       <section className="p-5">
         <div className="relative rounded h-[100vh] overflow-hidden bg-black">
-          <div className="absolute p-10 z-1 w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="">
-              <hr className="bg-white mb-5 opacity-75" />
+          <div className="absolute z-1 w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="container mx-auto px-7">
+              <hr className="border-white mb-5 opacity-75" />
               <div className="flex justify-center gap-5 w-full text-white">
                 <div className="w-2/4">
                   <h2 className="text-5xl font-title mb-3">SEFRIOUI Mehdi</h2>
@@ -52,27 +52,23 @@ export default async function Home() {
               Voir
             </Link>
           </div>
-          <div className="bg-primary p-15 rounded flex flex-col gap-y-10">
-            <ViewTransition
-              name={`project-image-${post.homeAcf.homeHighlight.id}`}
-            >
-              {post.homeAcf.homeHighlight.projectAcf.projectImage.sourceUrl && (
-                <Link href={`/projects/${post.homeAcf.homeHighlight.slug}`}>
-                  <Image
-                    src={
-                      post.homeAcf.homeHighlight.projectAcf.projectImage
-                        .sourceUrl
-                    }
-                    alt={post.homeAcf.homeHighlight.id}
-                    width={300}
-                    height={400}
-                    loading="lazy"
-                    placeholder="empty"
-                    className={"bg-slate-700 w-full h-auto rounded"}
-                  />
-                </Link>
-              )}
-            </ViewTransition>
+          <div className="bg-primary p-5 sm:p-15 sm:rounded flex flex-col gap-y-10">
+            {post.homeAcf.homeHighlight.projectAcf.projectImage.sourceUrl && (
+              <Link href={`/projects/${post.homeAcf.homeHighlight.slug}`}>
+                <Image
+                  src={
+                    post.homeAcf.homeHighlight.projectAcf.projectImage.sourceUrl
+                  }
+                  alt={post.homeAcf.homeHighlight.id}
+                  width={300}
+                  height={400}
+                  loading="lazy"
+                  placeholder="empty"
+                  className={"bg-slate-700 w-full h-auto rounded"}
+                />
+              </Link>
+            )}
+
             <div className="text-white">
               <div className="text-2xl">le projet</div>
               <div className="font-title text-5xl">En image</div>
@@ -87,7 +83,7 @@ export default async function Home() {
       )}
 
       {post.homeAcf.homeProjects && (
-        <section className="container mx-auto py-15">
+        <section className="container mx-auto py-15 px-7">
           <div className="text-slate-700 mb-10">
             <div className="text-2xl">Les autres</div>
             <div className="font-title text-6xl">Projets</div>
@@ -99,21 +95,18 @@ export default async function Home() {
                   href={`/projects/${post.slug}`}
                   className="flex flex-col gap-y-2"
                 >
-                  {post.projectAcf.projectImage && (
-                    <ViewTransition name={`project-image-${post.id}`}>
-                      {post.projectAcf.projectImage.sourceUrl && (
-                        <Image
-                          src={post.projectAcf.projectImage.sourceUrl}
-                          alt={post.id}
-                          width={300}
-                          height={400}
-                          loading="lazy"
-                          placeholder="empty"
-                          className={"bg-slate-700 w-full h-auto"}
-                        />
-                      )}
-                    </ViewTransition>
-                  )}
+                  {post.projectAcf.projectImage &&
+                    post.projectAcf.projectImage.sourceUrl && (
+                      <Image
+                        src={post.projectAcf.projectImage.sourceUrl}
+                        alt={post.id}
+                        width={300}
+                        height={400}
+                        loading="lazy"
+                        placeholder="empty"
+                        className={"bg-slate-700 w-full h-auto"}
+                      />
+                    )}
                   <div className="flex items-center gap-x-2">
                     {post.title}
                     <FontAwesomeIcon icon={faArrowRight} />
