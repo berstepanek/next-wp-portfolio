@@ -5,6 +5,8 @@ import { ViewTransitions } from "next-view-transitions";
 import Header from "@/components/layout/header";
 
 import { Anton } from "next/font/google";
+import Footer from "@/components/layout/footer";
+import { getGlobalStylesheet } from "@/services/global-style";
 const fontTitle = Anton({
   subsets: ["latin"],
   weight: "400",
@@ -16,9 +18,8 @@ const fontTitle = Anton({
 });*/
 
 export const metadata: Metadata = {
-  title: "Sang Mele Compagnie, théâtre",
-  description:
-    "La compagnie Sang Mele propose des spectacles professionnels de théâtre. De la création originale, à la modernisation de texte classique, la compagnie soigne toujours son casting et la mise à scène de ces spectacles",
+  title: "Medhi sefrioui",
+  description: "Medhi sefrioui",
 };
 
 export default async function RootLayout({
@@ -26,18 +27,28 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <ViewTransitions>
-      <html lang="en" className={`${fontTitle.variable}`}>
-        <body className={`bg-slate-900 text-white`}>
-          <Header />
+  const globalCss = await getGlobalStylesheet();
 
-          <main>{children}</main>
-          <footer className="p-2 text-center">
-            © {new Date().getFullYear()} – Sang Mélé Compagnie
-          </footer>
+  return (
+    <>
+      <html lang="en" className={`${fontTitle.variable}`}>
+        <head>
+          {globalCss && (
+            <style
+              href="wp-global-styles"
+              precedence="high"
+              dangerouslySetInnerHTML={{ __html: globalCss }}
+            />
+          )}
+        </head>
+        <body className={`bg-white text-secondary`}>
+          <ViewTransitions>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </ViewTransitions>
         </body>
       </html>
-    </ViewTransitions>
+    </>
   );
 }

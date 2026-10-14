@@ -2,13 +2,12 @@
 "use client";
 
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
+//import "swiper/css";
+//import "swiper/css/pagination";
 //import "swiper/css/navigation";
 
 // import required modules
 import { Parallax, Pagination, Autoplay } from "swiper/modules";
-import CreationCardDate from "@/app/creations/components/card-date";
 import { Link } from "next-view-transitions";
 import { useRef } from "react";
 import Image from "next/image";
@@ -104,13 +103,7 @@ export default function SliderExpoEffect({ items }: { items: any }) {
                   data-swiper-parallax="-2000"
                   className="flex justify-between sm:items-center flex-col sm:flex-row gap-2"
                 >
-                  <CreationCardDate
-                    dates={item.creation_acf.creationDates}
-                    cssClassInProgress={
-                      "font-title text-white text-3xl sm:text-4xl"
-                    }
-                    cssClassFinished={"font-title text-white"}
-                  />
+                  zone
                 </div>
               </div>
             </div>

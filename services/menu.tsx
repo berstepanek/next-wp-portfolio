@@ -2,21 +2,20 @@
 import { fetchGraphQL } from "../lib/graphql-client";
 
 const MENU_QUERY = `
-    query MainMenu {
-      menu(id: "main-menu", idType: SLUG) {
-        menuItems {
-          nodes {
-            id
-            label
-            url
-            path
-          }
+    query GetMenu {
+      menuItems(where: { location: PRIMARY }) {
+        nodes {
+          id
+          label
+          uri
+          url
+          parentId
         }
       }
     }
   `;
 
 export async function getPrimaryMenu() {
-  const data = await fetchGraphQL(MENU_QUERY);
-  return data;
+  const data = await fetchGraphQL<{ menuItems: any }>(MENU_QUERY);
+  return data.menuItems.nodes;
 }

@@ -1,92 +1,130 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import SliderSwiper from "@/components/ui/slider-swiper";
 import { getHomePage } from "@/services/home";
-import MemberCard from "./members/components/card";
-import CreationCardTimeline from "./creations/components/card-timeline";
-import CreationCardHighlight from "./creations/components/card-highlight";
-import SliderExpoEffect from "@/components/ui/slider-expo-effect";
-import Link from "next/link";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
+import Link from "next/link";
+import { ViewTransition } from "react";
 
 export default async function Home() {
-  const posts = await getHomePage();
+  const post = await getHomePage();
 
   return (
     <>
-      {posts.home_acf.homeHighlightingEvent && (
-        <div className="mb-10">
-          <SliderExpoEffect
-            items={posts.home_acf.homeCarrousel}
-          ></SliderExpoEffect>
-        </div>
-      )}
-
-      <section className="py-12 px-4">
-        <h2 className="font-title text-center text-5xl md:text-6xl mb-12 text-red-500">
-          Mise en lumiere
-          <span className="block text-2xl text-white">
-            du dernier spectacle
-          </span>
-        </h2>
-        {posts.home_acf.homeHighlightingEvent.map((creation: any) => (
-          <CreationCardHighlight key={creation.id} creation={creation} />
-        ))}
-      </section>
-
-      <section className="py-12 px-4">
-        <h2 className="font-title text-center text-5xl md:text-6xl mb-12 text-red-500">
-          Date des prochains spectacles
-        </h2>
-
-        <div className="flex justify-center">
-          <div className="w-full max-w-screen-lg flex flex-col gap-y-10">
-            {posts.home_acf.homeCreations.map(
-              (creation: any, index: number) => (
-                <CreationCardTimeline
-                  key={creation.id}
-                  creation={creation}
-                  index={index}
-                />
-              ),
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden h-[70vh] flex items-center justify-center my-12">
-        <Link
-          href={`/creations/`}
-          className="font-title text-center text-5xl md:text-9xl mb-12 text-red-500 -skew-y-12 z-10"
-        >
-          - Créations -
-          <span className="block text-4xl text-white">
-            Théâtrales / cinématographiques
-          </span>
-        </Link>
-
-        <div className="absolute top left w-full h-full">
-          <Image
-            src={posts.home_acf.homeCreationsIllustration.sourceUrl}
-            alt="créations"
-            width={2000}
-            height={620}
-            className="w-full h-full object-cover opacity-50"
-          />
-        </div>
-      </section>
-
-      <section className="py-12">
-        <h2 className="font-title text-center text-5xl md:text-8xl mb-12 text-red-500">
-          Les membres
-        </h2>
-        <div className="flex justify-center">
-          <div className="max-w-screen-xl w-full px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
-              {posts.home_acf.homeMembers.map((member: any) => (
-                <MemberCard key={member.id} member={member} />
-              ))}
+      <section className="p-5">
+        <div className="relative rounded h-[100vh] overflow-hidden bg-black">
+          <div className="absolute z-1 w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="container mx-auto px-7">
+              <hr className="border-white mb-5 opacity-75" />
+              <div className="flex justify-center gap-5 w-full text-white">
+                <div className="w-2/4">
+                  <h2 className="text-5xl font-title mb-3">SEFRIOUI Mehdi</h2>
+                </div>
+                <div className="w-2/4">
+                  <p className="text-lg">Photographe</p>
+                </div>
+              </div>
             </div>
           </div>
+          <video
+            className="object-cover w-full h-full opacity-75"
+            autoPlay
+            loop
+            muted
+            preload="none"
+            data-hero-visual="video"
+          >
+            <source src="grass-decoration.mp4" type="video/mp4" />
+          </video>
         </div>
+      </section>
+      {post.homeAcf.homeHighlight && (
+        <section className="container mx-auto py-15">
+          <div className="mb-10 text-center">
+            Last project - {post.homeAcf.homeHighlight.title}
+          </div>
+          <h1 className="font-title text-center text-5xl md:text-9xl mb-12 text-primary mb-10">
+            <span>- {post.homeAcf.homeHighlight.title} -</span>
+          </h1>
+          <div className="mb-10 text-center">
+            <Link href={`/projects/${post.homeAcf.homeHighlight.slug}`}>
+              Voir
+            </Link>
+          </div>
+          <div className="bg-primary p-5 sm:p-15 sm:rounded flex flex-col gap-y-10">
+            {post.homeAcf.homeHighlight.projectAcf.projectImage.sourceUrl && (
+              <Link href={`/projects/${post.homeAcf.homeHighlight.slug}`}>
+                <Image
+                  src={
+                    post.homeAcf.homeHighlight.projectAcf.projectImage.sourceUrl
+                  }
+                  alt={post.homeAcf.homeHighlight.id}
+                  width={300}
+                  height={400}
+                  loading="lazy"
+                  placeholder="empty"
+                  className={"bg-slate-700 w-full h-auto rounded"}
+                />
+              </Link>
+            )}
+
+            <div className="text-white">
+              <div className="text-2xl">le projet</div>
+              <div className="font-title text-5xl">En image</div>
+            </div>
+            <div className="">
+              <SliderSwiper
+                items={post.homeAcf.homeHighlight.projectAcf.projectGallery}
+              ></SliderSwiper>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {post.homeAcf.homeProjects && (
+        <section className="container mx-auto py-15 px-7">
+          <div className="text-slate-700 mb-10">
+            <div className="text-2xl">Les autres</div>
+            <div className="font-title text-6xl">Projets</div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+            {post.homeAcf.homeProjects.map((post: any) => (
+              <div key={post.id}>
+                <Link
+                  href={`/projects/${post.slug}`}
+                  className="flex flex-col gap-y-2"
+                >
+                  {post.projectAcf.projectImage &&
+                    post.projectAcf.projectImage.sourceUrl && (
+                      <Image
+                        src={post.projectAcf.projectImage.sourceUrl}
+                        alt={post.id}
+                        width={300}
+                        height={400}
+                        loading="lazy"
+                        placeholder="empty"
+                        className={"bg-slate-700 w-full h-auto"}
+                      />
+                    )}
+                  <div className="flex items-center gap-x-2">
+                    {post.title}
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section className="container mx-auto">
+        {post.content && (
+          <div
+            className="entry-content wp-block-post-content is-layout-constrained wp-block-post-content-is-layout-constrained"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          ></div>
+        )}
       </section>
     </>
   );
