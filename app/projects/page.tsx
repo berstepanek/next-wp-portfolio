@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function CreationsPage() {
+export default async function ProjectsPage() {
   const posts = await getAllProjects();
 
   return (
