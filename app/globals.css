@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./grid.css";
 
 :root {
   --body-background: #ffffff;

@@ -12,16 +12,18 @@ export default async function Home() {
   const variables = VARIABLES_WEB_SITE;
   return (
     <>
-      <section className="p-5">
-        <div className="relative rounded h-[100vh] overflow-hidden bg-black">
-          <div className="absolute z-1 w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="container mx-auto px-7">
-              <hr className="border-white mb-5 opacity-75" />
-              <div className="flex justify-center gap-5 w-full text-white">
-                <div className="w-2/4">
+      <section className="h-screen bg-black text-white p-5">
+        <div className="container h-full py-15">
+          <div className="row h-full items-center">
+            <div className="col-12">
+              <div className="row">
+                <div className="col-12">
+                  <hr className="border-white mb-5 opacity-75" />
+                </div>
+                <div className="col-6">
                   <h2 className="text-5xl font-title mb-3">{variables.name}</h2>
                 </div>
-                <div className="w-2/4">
+                <div className="col-6">
                   <p className="text-lg">Photographe</p>
                 </div>
               </div>
@@ -29,8 +31,9 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
       {post.homeAcf.homeHighlight && (
-        <section className="container mx-auto py-15">
+        <section className="container py-15">
           <div className="mb-10 text-center">
             Last project - {post.homeAcf.homeHighlight.title}
           </div>
@@ -73,14 +76,14 @@ export default async function Home() {
       )}
 
       {post.homeAcf.homeProjects && (
-        <section className="container mx-auto py-15 px-7">
+        <section className="container py-15">
           <div className="text-slate-700 mb-10">
             <div className="text-2xl">Les autres</div>
             <div className="font-title text-6xl">Projets</div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+          <div className="row g-7">
             {post.homeAcf.homeProjects.map((post: any) => (
-              <div key={post.id}>
+              <div key={post.id} className="col-12 md:col-6">
                 <Link
                   href={`/projects/${post.slug}`}
                   className="flex flex-col gap-y-2"
@@ -108,7 +111,7 @@ export default async function Home() {
         </section>
       )}
 
-      <section className="container mx-auto">
+      <section className="container">
         {post.content && (
           <div
             className="entry-content wp-block-post-content is-layout-constrained wp-block-post-content-is-layout-constrained"

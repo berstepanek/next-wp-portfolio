@@ -20,7 +20,7 @@ export default function HeaderClient({
 
   return (
     <header className="fixed top-8 left-0 w-full z-10">
-      <div className="container mx-auto px-7">
+      <div className="container">
         <div
           className={[
             "inline-block p-2 transition-colors duration-300 text-white rounded",

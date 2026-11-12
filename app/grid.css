@@ -1,0 +1,108 @@
+/*
+ * Grille façon Bootstrap, en utilitaires Tailwind v4.
+ *
+ *   <div class="container">
+ *     <div class="row g-6">
+ *       <div class="col-12 md:col-6 lg:col-4">…</div>
+ *       <div class="col-12 md:col-6 lg:col-4 lg:offset-4">…</div>
+ *     </div>
+ *   </div>
+ *
+ * Responsive : préfixes Tailwind (sm: md: lg: xl: 2xl:) au lieu de col-md-6.
+ * Gouttières : g-* / gx-* / gy-* sur l'échelle de spacing Tailwind (g-6 = 1.5rem),
+ *              ou valeur libre : g-[30px].
+ */
+
+@theme {
+  --grid-columns: 12;
+  --grid-gutter: calc(var(--spacing) * 6); /* 1.5rem, comme Bootstrap */
+}
+
+/* ---------- Containers ---------- */
+
+/* Étend le `container` Tailwind (width 100% + max-width par breakpoint) */
+@utility container {
+  margin-inline: auto;
+  padding-inline: calc(var(--grid-gutter) * 0.5);
+}
+
+@utility container-fluid {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: calc(var(--grid-gutter) * 0.5);
+}
+
+/* ---------- Row ---------- */
+
+@utility row {
+  --gutter-x: var(--grid-gutter);
+  --gutter-y: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(var(--gutter-y) * -1);
+  margin-inline: calc(var(--gutter-x) * -0.5);
+
+  & > * {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-inline: calc(var(--gutter-x) * 0.5);
+    margin-top: var(--gutter-y);
+  }
+}
+
+/* row-cols-3 : enfants répartis en N colonnes égales */
+@utility row-cols-* {
+  & > * {
+    flex: 0 0 auto;
+    width: calc(100% / --value(integer));
+  }
+}
+
+@utility row-cols-auto {
+  & > * {
+    flex: 0 0 auto;
+    width: auto;
+  }
+}
+
+/* ---------- Colonnes ---------- */
+
+@utility col {
+  flex: 1 0 0%;
+}
+
+@utility col-auto {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+/* col-1 … col-12 */
+@utility col-* {
+  flex: 0 0 auto;
+  width: calc(100% * --value(integer) / var(--grid-columns));
+}
+
+/* offset-0 … offset-11 */
+@utility offset-* {
+  margin-left: calc(100% * --value(integer) / var(--grid-columns));
+}
+
+/* ---------- Gouttières (à poser sur .row) ---------- */
+
+@utility g-* {
+  --gutter-x: calc(var(--spacing) * --value(integer));
+  --gutter-y: calc(var(--spacing) * --value(integer));
+  --gutter-x: --value([length]);
+  --gutter-y: --value([length]);
+}
+
+@utility gx-* {
+  --gutter-x: calc(var(--spacing) * --value(integer));
+  --gutter-x: --value([length]);
+}
+
+@utility gy-* {
+  --gutter-y: calc(var(--spacing) * --value(integer));
+  --gutter-y: --value([length]);
+}

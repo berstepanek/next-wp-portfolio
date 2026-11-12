@@ -37,8 +37,8 @@ export default async function CreationPage({ params }: Creations) {
 
   return (
     <>
-      <section className="p-5">
-        <div className="relative rounded h-[70vh] sm:h-[100vh] overflow-hidden bg-black">
+      <section className="relative h-auto sm:h-screen bg-black overflow-hidden">
+        <div className="">
           {post.projectAcf.projectImage &&
             post.projectAcf.projectImage.sourceUrl && (
               <Image
@@ -52,35 +52,31 @@ export default async function CreationPage({ params }: Creations) {
               />
             )}
           <div className="absolute bottom-7 w-full bottom-0 left-0">
-            <div className="container mx-auto px-7">
-              <div className="w-full text-white">
-                <h1 className="font-title text-5xl sm:text-9xl mb-7">
-                  {post.title}
-                </h1>
-              </div>
+            <div className="container">
+              <h1 className="font-title text-5xl sm:text-9xl text-white mb-7">
+                {post.title}
+              </h1>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-white">
-        <div className="container mx-auto py-15 px-5">
-          <div className="flex flex-col sm:flex-row justify-center gap-5 w-full sm:w-3/4 ">
-            <div className="w-full sm:w-3/4 text-left sm:text-right">
-              <h2 className="text-5xl font-title mb-3">
-                {post.projectAcf.projectTitle}
-              </h2>
-            </div>
-            <div className="w-full sm:w-1/4">
-              <p className="text-lg">{post.projectAcf.projectDescription}</p>
-            </div>
+      <section className="container py-15 bg-white">
+        <div className="row justify-center">
+          <div className="col-12 sm:col-3 text-left sm:text-right">
+            <h2 className="text-5xl font-title mb-3">
+              {post.projectAcf.projectTitle}
+            </h2>
+          </div>
+          <div className="col-12 sm:col-3">
+            <p className="text-lg">{post.projectAcf.projectDescription}</p>
           </div>
         </div>
       </section>
 
-      <section className="py-24 relative">
-        <div className="flex justify-center">
-          <div className="w-full max-w-screen-md text-center px-5">
+      <section className="container py-15">
+        <div className="row justify-center">
+          <div className="col-12 sm:col-6">
             <div className="flex flex-col gap-y-4">
               {post.projectAcf.projectImage &&
                 post.projectAcf.projectImage.sourceUrl && (
