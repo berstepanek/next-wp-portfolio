@@ -1,5 +1,3 @@
-import { Link } from "next-view-transitions";
-
 import { VARIABLES_WEB_SITE } from "@/lib/variables";
 
 import Navigation from "./navigation";

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { fetchGraphQL } from "../lib/graphql-client";
+import { normalizeProject, PROJECT_ACF_FIELDS } from "./project";
 
+// homeHighlight / homeProjects -> AcfContentNodeConnection => { nodes [ ... ] }
 const ALL_HOMEPAGE_QUERY = `
   query HomePage {
     pageBy(uri: "/") {
@@ -9,47 +11,26 @@ const ALL_HOMEPAGE_QUERY = `
       content
       homeAcf {
         homeHighlight {
-          ... on Project {
-            id
-            title
-            uri
-            slug
-            projectAcf{
-              projectIsonline
-              projectTitle
-              projectImage {
-                sourceUrl
-                altText
-              }
-              projectGallery{
-                id
-                sourceUrl
-                altText
-                mediaDetails {
-                  width
-                  height
-                }         
-              }
+          nodes {
+            ... on Project {
+              id
+              title
+              uri
+              slug
+              ${PROJECT_ACF_FIELDS}
             }
           }
-          
         }
         homeProjects {
-          ... on Project {
-            id
-            title
-            uri
-            slug
-            projectAcf{
-              projectIsonline
-              projectTitle
-              projectImage {
-                sourceUrl
-                altText
-              }
+          nodes {
+            ... on Project {
+              id
+              title
+              uri
+              slug
+              ${PROJECT_ACF_FIELDS}
             }
           }
-          
         }
       }
     }
@@ -58,5 +39,19 @@ const ALL_HOMEPAGE_QUERY = `
 
 export async function getHomePage() {
   const data = await fetchGraphQL<{ pageBy: any }>(ALL_HOMEPAGE_QUERY);
-  return data.pageBy;
+  const page = data.pageBy;
+  if (!page?.homeAcf) return page;
+
+  const { homeHighlight, homeProjects } = page.homeAcf;
+  const highlight = homeHighlight?.nodes?.[0];
+
+  return {
+    ...page,
+    homeAcf: {
+      ...page.homeAcf,
+      // Mise en avant : un seul projet attendu par la page d'accueil
+      homeHighlight: highlight ? normalizeProject(highlight) : null,
+      homeProjects: (homeProjects?.nodes ?? []).map(normalizeProject),
+    },
+  };
 }

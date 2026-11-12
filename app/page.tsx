@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import SliderSwiper from "@/components/ui/slider-swiper";
+import { VARIABLES_WEB_SITE } from "@/lib/variables";
 import { getHomePage } from "@/services/home";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
-import { ViewTransition } from "react";
 
 export default async function Home() {
   const post = await getHomePage();
-
+  const variables = VARIABLES_WEB_SITE;
   return (
     <>
       <section className="p-5">
@@ -19,7 +19,7 @@ export default async function Home() {
               <hr className="border-white mb-5 opacity-75" />
               <div className="flex justify-center gap-5 w-full text-white">
                 <div className="w-2/4">
-                  <h2 className="text-5xl font-title mb-3">SEFRIOUI Mehdi</h2>
+                  <h2 className="text-5xl font-title mb-3">{variables.name}</h2>
                 </div>
                 <div className="w-2/4">
                   <p className="text-lg">Photographe</p>
@@ -27,16 +27,6 @@ export default async function Home() {
               </div>
             </div>
           </div>
-          <video
-            className="object-cover w-full h-full opacity-75"
-            autoPlay
-            loop
-            muted
-            preload="none"
-            data-hero-visual="video"
-          >
-            <source src="grass-decoration.mp4" type="video/mp4" />
-          </video>
         </div>
       </section>
       {post.homeAcf.homeHighlight && (

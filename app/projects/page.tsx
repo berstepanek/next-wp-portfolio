@@ -35,16 +35,6 @@ export default async function ProjectsPage() {
               </div>
             </div>
           </div>
-          <video
-            className="object-cover w-full h-full opacity-75"
-            autoPlay
-            loop
-            muted
-            preload="none"
-            data-hero-visual="video"
-          >
-            <source src="grass-decoration.mp4" type="video/mp4" />
-          </video>
         </div>
       </section>
 
