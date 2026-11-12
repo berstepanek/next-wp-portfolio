@@ -2,11 +2,8 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-// @ts-expect-error-error
 import "swiper/css";
-// @ts-expect-error-error
 import "swiper/css/navigation";
-// @ts-expect-error-error
 import "swiper/css/pagination";
 
 import Image from "next/image";
